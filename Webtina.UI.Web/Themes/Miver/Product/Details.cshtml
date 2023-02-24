@@ -1,0 +1,582 @@
+﻿@model ProductDetailsViewModel
+<div class="main-page py-4">
+    <div class="container">
+        <div class="row product-detail">
+            <div class="col-lg-8 left">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">نخست</a></li>
+                        <li class="breadcrumb-item"><a href='/group/@Model.GroupId/@Model.GroupTitleSlug' itemprop="url">@Model.GroupTitle</a></li>
+                        <li class="breadcrumb-item"><a href='/group/@Model.SubGroupId/@Model.SubGroupTitleSlug' itemprop="url">@Model.SubGroupTitle</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            @Model.Title
+                        </li>
+                    </ol>
+                </nav>
+                <h2>@Model.Title</h2>
+                <div id="overview"
+                     class="seller-overview d-flex align-items-center">
+                    <div class="user-profile-image d-flex">
+                        <label class="profile-pict" for="profile_image">
+                            <img src="@Model.UserPicUrl" class="profile-pict-img img-fluid"
+                                 alt="تصویر @Model.UserFullName">
+                        </label>
+                        <div class="profile-name">
+                            <span class="user-status">
+
+                                <a href="/profile/@Model.UserId" class="seller-link">@Model.UserFullName </a>
+
+                            </span>
+                        </div>
+                    </div>
+                   
+                    @*<div class="user-info d-flex">
+                        <span class="user-info-rating d-flex">
+                            <div class="star-rating-s15-wrapper">
+                                <span class="star-rating-s15 rate-10"></span>
+                            </div>
+                            <span class="total-rating-out-five">5.0</span>
+                            <span class="total-rating">(36)</span>
+                        </span>
+                        <span class="orders-in-queue">14 سفارش ثبت شده</span>
+                    </div>*@
+
+                </div>
+                <div class="slider mt-4">
+                    <div id="aniimated-thumbnials" class="slider-for slick-slider-single">
+
+                        @*<%--
+                        main pic:
+
+                        <a href="<%=string.Format(" /content/productpic/{0}",Pic) %>
+                            ">
+                            <img itemprop="image" src='<%=string.Format("/HPicturer.ashx?img=~/content/productpic/{0}&w=360&h=300",Pic) %>' alt='<%=title %>' />
+                        </a>--%>
+                        <asp:Repeater ID="rptGallery" runat="server" DataSourceID="sdsGallery" OnPreRender="rptGallery_PreRender">
+                            <ItemTemplate>
+                                <a href="<%# string.Format(" /content/productpic/gallery/{0}",Eval("FileName")) %>
+                                    " class="img-fluid">
+                                    <img src='<%# Eval("filename","/HPicturer.ashx?img=~/content/productpic/gallery/{0}&w=360&h=300") %>' alt="<%# Eval(" title") %>" />
+                                </a>
+                            </ItemTemplate>
+                        </asp:Repeater>*@
+                    </div>
+                    <div class="slider-nav slick-slider-single" id="divGallery" runat="server">
+
+                        @*<%--
+                        main pic:
+
+                        <div class="item-slick">
+                            <img class="img-fluid" src='<%=string.Format("/HPicturer.ashx?img=~/content/productpic/{0}&w=360&h=300",Pic) %>' alt='<%=title %>' />
+                        </div>--%>
+
+
+                        <asp:Repeater ID="rptGalleryThumb" runat="server" DataSourceID="sdsGallery" OnPreRender="rptGallery_PreRender">
+                            <ItemTemplate>
+                                <div class="item-slick">
+                                    <img class="img-fluid" src='<%# Eval("filename","/HPicturer.ashx?img=~/content/productpic/gallery/{0}&w=360&h=300") %>' alt="<%# Eval(" title") %>" />
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    <asp:SqlDataSource ID="sdsGallery" runat="server"
+                                       ConnectionString="<%$ ConnectionStrings:CMSDataBaseConnectionString %>"
+                                       SelectCommand="filegallery" SelectCommandType="StoredProcedure">
+                        <SelectParameters>
+                            <asp:RouteParameter RouteKey="id" Name="ProductID" Type="Int32" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>*@
+
+                    </div>
+
+                </div>
+                <div id="description" class="description ">
+                    @Html.Raw(Model.Text)
+                </div>
+
+                <div class="box px-0 pb-0 overflow-hidden">
+                    <span class="mb-4 d-block h6 pr-3">جزئیــات فایل</span>
+                    <ul class="specs">
+                        <li>
+                            <label>کد فایل</label>
+                            <span>@Model.Id</span>
+                        </li>
+                        <li>
+                            <label>انتشار در</label>
+                            <span>@Model.RegDateDisplay</span>
+                        </li>
+                        <li>
+                            <label>حجم فایل ها</label>
+                            <span>@Model.FileSizeDisplay</span>
+                        </li>
+
+                        @*<asp:Repeater ID="rptSpecs" runat="server" DataSourceID="sdsGetProductSpecification">
+                            <ItemTemplate>
+                                <li>
+                                    <label><%#Eval("title") %></label>
+                                    <span><%#Eval("value") %></span>
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+
+                        <asp:SqlDataSource ID="sdsGetProductSpecification" runat="server"
+                                           ConnectionString="<%$ ConnectionStrings:CMSDataBaseConnectionString %>" SelectCommand="GetProductSpecification" SelectCommandType="StoredProcedure">
+                            <SelectParameters>
+                                <asp:RouteParameter Name="id" RouteKey="id" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>*@
+                    </ul>
+
+
+                </div>
+
+                <div class="product-info d-lg-none mb-5">
+
+                    <div runat="server" id="div1" visible="false">
+                        <a href="/rateProduct/@Model.Id" class="btn btn-block btn-dark mb-3">
+                            به این فایل امتیاز دهید
+                        </a>
+                    </div>
+
+                    <header>
+
+                        <div class="stars">
+                            <div class="rateYo"></div>
+                        </div>
+
+
+
+                        @*<% if (rating.Count > 0)
+            { %>
+            <div class="votes d-flex align-items-center">
+                <div class="rating"><%=rating.Avg %></div>
+                <div class="rateCount">از <%=rating.Count %> رای</div>
+            </div>
+            <%}
+            else
+            { %>
+            <div class="votes d-flex align-items-center">
+                <div class="text-muted">بدون رای</div>
+            </div>
+
+            <%} %>*@
+                    </header>
+                    <article>
+                        <div class="">
+                            <b class="delivery">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                ضمنانت برگشت وجه
+                            </b>
+                            <b class="delivery">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                                دارای نماد اعتماد
+                            </b>
+                        </div>
+
+                    </article>
+                    <partial name="~/Themes/Miver/Product/Partials/_PriceInfo.cshtml" model="Model" />
+                    <div class="text-center text-success mt-3">
+                        <i class="fa fa-check"></i>
+                        تضمین بازگشت ۱۰۰٪ وجه در صورت نارضایتی!
+                    </div>
+                </div>
+
+
+
+
+                <h3 id="aboutSeller ">فروشنده</h3>
+                <div class="profile-card">
+                    <div class="user-profile-image d-flex">
+                        <label class="profile-pict" for="profile_image">
+                            <img src="@Model.UserPicUrl"
+                                 class="profile-pict-img img-fluid"
+                                 alt="" />
+                        </label>
+                        <div class="right">
+                            <div class="profile-name">
+                                <span class="user-status">
+                                    <a href="/profile/@Model.UserId" class="seller-link">@Model.UserFullName</a>
+                                </span>
+                                <div class="seller-level">
+                                    @Model.UserFullName
+                                </div>
+
+                                @*<ul>
+                                    <li>
+                                        <span>عضویت</span>
+
+                                        <%=user.RegDate %>
+                                    </li>
+                                    <% if (!string.IsNullOrEmpty(user.ShopName))
+                                    { %>
+                                    <li>
+                                        <span>آدرس فروشگاه</span>
+                                        <a target="_blank" href="http://<%=user.ShopUrl %>.karokia.ir"><%=user.ShopName %></a>
+                                    </li>
+
+                                    <%} %>
+                                </ul>*@
+
+                            </div>
+                            @*<%--<div class="user-info">
+                                <div class="user-info-rating d-flex align-items-center">
+                                    <div class="star-rating-s15-wrapper">
+                                        <span class="star-rating-s15 rate-10">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <span class="total-rating-out-five">5.0</span>
+                                    <span class="total-rating">(36 نظر)</span>
+                                </div>
+                                <a href="#">تماس با فروشنده</a>
+                            </div>--%>*@
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div id="reviews" class="review-section">
+                    <div class="d-flex align-items-center justify-content-between mb-0">
+                        <h4 class="m-0">نظرات</h4>
+                    </div>
+                </div>
+                @*<div>
+                    <% if (isActive)
+                    { %>
+
+                    <%if (!CMS.CommonFunctions.UserIsLoggedIn())
+                    {
+                    %>
+                    <p class="text-center font-weight-bold">برای ارسال نظر باید وارد حساب کاربری خود شوید. <a href="/auth?returnurl=<%=Request.RawUrl %>#comments">اینجا کلیک کنید</a></p>
+                    <%
+                    }
+                    else
+                    {%>
+                    <div class="box">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>نام و نام خانوادگی *</label><br />
+                                    <asp:TextBox runat="server" ID="txtNameQ" ClientIDMode="Static" CssClass="form-control" MaxLength="50" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>ایمیل <small>(برای دریافت پاسخ، حتما وارد کنید)</small></label><br />
+                                    <asp:TextBox runat="server" ID="txtMailQ" ClientIDMode="Static" CssClass="form-control" MaxLength="50" />
+                                </div>
+                            </div>
+                            <div class="m-b-10 clear"></div>
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label>نظر یا پرسش شما *</label>
+
+                                    <asp:TextBox ID="txtQuestion" ClientIDMode="Static" runat="server" CssClass="form-control form-horizontal m-b-10" TextMode="MultiLine" Height="100"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="mt-20"></div>
+                            <div class="col-12 text-left">
+                                <span id="sp_sendque" clientidmode="Static" runat="server" onclick="sendQues(this)" class="btn-success btn btn-sm">ارسال نظر</span>
+                                <asp:HiddenField ID="hdn_pid" runat="server" ClientIDMode="Static" />
+                                <asp:HiddenField ID="hdn_uid" runat="server" ClientIDMode="Static" />
+                            </div>
+                        </div>
+                        <script>
+                                function sendQues(obj) {
+
+                                    if ($("#txtQuestion").val().length <= 3) {
+                                        alert('متن مورد نظر خود را وارد کنید');
+                                        return;
+                                    }
+                                    $('#sp_sendque').html("ارسال نظر &nbsp;&nbsp;&nbsp;<i class='fa fa-refresh spin'></b>");
+                                    setTimeout(function () {
+                                        $.ajax({
+                                            url: '/product.aspx/sendQuestion',
+                                            type: 'POST',
+                                            data: JSON.stringify({
+                                                Text: $("#txtQuestion").val().replace(/\n/g, '<br>'),
+                                                userID: $("#hdn_uid").val(),
+                                                Pid: $("#hdn_pid").val(),
+                                                name: $("#txtNameQ").val(),
+                                                email: $("#txtMailQ").val(),
+                                            }),
+                                            dataType: "json",
+                                            contentType: "application/json; charset=utf-8",
+                                            success: function (data) {
+
+                                                $('#sp_sendque').html('پرسش شما ارسال شد. در صورت نیاز پاسخ داده می شود');
+                                                $("#txtQuestion").val('');
+                                                $('#sp_sendque').attr('class', '')
+                                            },
+                                        });
+                                    }, 800);
+                                }
+                        </script>
+
+
+                    </div>
+
+
+                    <%}
+                    }%>
+                </div>*@
+
+                @*<div class="review-list mt-5" runat="server" id="commentList">
+                    <ul class="discussion">
+                        <asp:ListView ID="lvwItems" runat="server"
+                                      ItemPlaceholderID="PlaceHolder" DataSourceID="sds_questions">
+                            <LayoutTemplate>
+                                <asp:PlaceHolder ID="PlaceHolder" runat="server"></asp:PlaceHolder>
+
+                            </LayoutTemplate>
+                            <ItemTemplate>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="right">
+                                            <span class="text-center d-block">
+                                                <img src="<%# Eval(" pic") %>"
+                                                class="profile-pict-img img-fluid"
+                                                alt="" />
+                                                <label class="badge badge-primary badge-sm mt-3">خریدار</label>
+                                            </span>
+                                        </div>
+                                        <div class="left">
+                                            <span class="publish d-inline-block float-left">
+                                                تاریخ انتشار:
+                                                <%#CMS.CommonFunctions.String2date(Eval("regdate"),2,"H")   +" - "+ CMS.CommonFunctions.String2date(Eval("regdate"),2,"D")%>
+                                            </span>
+                                            <h4>
+                                                <%# Eval("fullname") %>
+                                            </h4>
+                                            <span class="text-muted">
+                                                امتیاز به محصول:
+                                                <i class="mr-2 fa fa-star h6 text-gold"></i>
+                                                <b class="mr-1 h6 text-gold"><%# Eval("rateValue") %></b>
+                                            </span>
+                                            <div class="review-description mb-4">
+                                                <%# Eval("text").ToString().Replace("\r\n","<br>") %>
+                                            </div>
+
+
+                                            <div style='<%# string.IsNullOrEmpty(Eval("reply").ToString()) ?  "display:none": ""%>'>
+                                                <div class="response-item mt-4 d-flex">
+                                                    <div class="left">
+                                                        <span>
+                                                            <img src="user-male.png"
+                                                                 class="profile-pict-img img-fluid"
+                                                                 alt="" />
+                                                        </span>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h4>
+                                                            پاسخ
+                                                        </h4>
+                                                        <div class="review-description">
+                                                            <p>
+
+                                                                <%#Eval("reply") %>
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </li>
+                            </ItemTemplate>
+
+                        </asp:ListView>
+
+                        <asp:SqlDataSource ID="sds_questions" runat="server" ConnectionString="<%$ ConnectionStrings:CMSDataBaseConnectionString %>"
+                                           SelectCommand="QuestionList_product" SelectCommandType="StoredProcedure">
+                            <SelectParameters>
+                                <asp:RouteParameter Name="productID" RouteKey="id" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                    </ul>
+
+                    <div class="clear"></div>
+
+
+                    <nav class="<%=dpItems.TotalRowCount > dpItems.PageSize ? " pager ltr" : "d-none" %>
+                        ">
+                        <asp:DataPager ID="dpItems" runat="server" PagedControlID="lvwItems" PageSize="15" QueryStringField="page">
+                            <Fields>
+                                <asp:NextPreviousPagerField ShowFirstPageButton="false" ShowNextPageButton="False" PreviousPageText="" FirstPageText="" ShowPreviousPageButton="true"
+                                                            ButtonCssClass="pback" />
+                                <asp:NumericPagerField NumericButtonCssClass="" CurrentPageLabelCssClass="pcur" />
+                                <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="false" ShowNextPageButton="true" NextPageText="" ShowPreviousPageButton="False" LastPageText=""
+                                                            ButtonCssClass="pnext" />
+                            </Fields>
+                        </asp:DataPager>
+                    </nav>
+
+                </div>
+
+                <uc1:ShowAdsUC runat="server" ID="ShowAdsUC1" Place="1" Random="1" Count="1" />*@
+
+                <div class="tags">
+                    <h3>تگ ها</h3>
+                    <ul class="">
+                        @foreach(var keyword in Model.KeyWordsList)
+                        {
+                            <li><a href="/search/@keyword" target="_blank">@keyword</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 right">
+
+                <div class="sticky">
+                    <div class="product-info d-none d-lg-block">
+
+                        <div runat="server" id="divRateIt" visible="false">
+                            <a href="/rateProduct/@Model.Id" class="btn btn-block btn-dark mb-3">
+                                به این فایل امتیاز دهید
+                            </a>
+                        </div>
+
+                        <header>
+
+                            <div class="stars">
+                                <div class="rateYo"></div>
+                            </div>
+
+
+
+                            @*<% if (rating.Count > 0)
+                            { %>
+                            <div class="votes d-flex align-items-center">
+                                <div class="rating"><%=rating.Avg %></div>
+                                <div class="rateCount">از <%=rating.Count %> رای</div>
+                            </div>
+                            <%}
+                            else
+                            { %>
+                            <div class="votes d-flex align-items-center">
+                                <div class="text-muted">بدون رای</div>
+                            </div>
+
+                            <%} %>*@
+                        </header>
+                        <article>
+                            <div class="">
+                                <b class="delivery">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    ضمنانت برگشت وجه
+                                </b>
+                                <b class="delivery">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    دارای نماد اعتماد
+                                </b>
+                            </div>
+
+                        </article>
+
+                         <partial name="~/Themes/Miver/Product/Partials/_PriceInfo.cshtml" model="Model" />
+                         
+
+                         
+
+
+                        <div class="text-center text-success mt-3">
+                            <i class="fa fa-check"></i>
+                            تضمین بازگشت ۱۰۰٪ وجه در صورت نارضایتی!
+                        </div>
+                    </div>
+                    <div class="box1">
+                        @*<%-- <div class="product-options mb-3">
+                            <ul class="d-flex align-items-center justify-content-end">
+                                <li>
+                                    <span class="collect-count">138</span>
+                                </li>
+                                <li>
+                                    <button>
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                        مورد علاقه
+                                    </button>
+                                </li>
+                                <li class="mr-2">
+                                    <button>
+                                        <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                        اشتراک گذاری
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>--%>*@
+
+                        <div class="row options mt-4">
+                            @*<%--<div class="col-6"><a href="#divques" class="btn btn-outline-info btn-block">پرسش سوال</a></div>--%>*@
+                            <div class="col-6 m-auto"><a href="/report.aspx?id=@Model.Id" class="btn btn-sm btn-outline-dark btn-block reportModal">گزارش محصول</a></div>
+                        </div>
+                        @*<%--  <div class="sharelink" data-toggle="tooltip" title="برای کپی لینک کلیک کنید" onclick='copyTextToClipboard("<%=ShareLink %>",this)'>
+                            <i class='fa fa-files-o'></i>
+                            <%=ShareLink %>
+                        </div>
+                        <ul class="inline social">
+                            <li><a href="<%= Telegram %>" data-toggle="tooltip" title="اشتراک گذاری در تلگرام"><i class="fa fa-paper-plane"></i></a></li>
+                            <li><a href="<%= whatsApp %>" data-toggle="tooltip" title="اشتراک گذاری در واتساپ"><i class="fa fa-whatsapp"></i></a></li>
+                            <li><a href="<%= Twitter %>" title="اشتراک گذاری در توییتر"><i class="fa fa-twitter"></i></a></li>
+                        </ul> --%>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="view_slider recommended" id="divgroupproduct" runat="server">
+            <h5 class="mb-4">محصولات مشابه</h5>
+            <div class="view recommended-slider">
+
+                @*<asp:SqlDataSource ID="sdsGetSameGroupProducts" runat="server" ConnectionString="<%$ ConnectionStrings:CMSDataBaseConnectionString %>"
+                                   SelectCommand="GetSameGroupProducts" SelectCommandType="StoredProcedure">
+                    <SelectParameters>
+                        <asp:RouteParameter Name="id" Type="Int32" RouteKey="id" />
+
+
+                    </SelectParameters>
+                </asp:SqlDataSource>
+                <asp:Repeater ID="rptOther" runat="server" DataSourceID="sdsGetSameGroupProducts" OnPreRender="rptOther_PreRender">
+
+                    <ItemTemplate>
+
+                        <div>
+                            <uc1:ProductGridTemplateUC runat="server" ID="ProductGridTemplateUC" />
+                        </div>
+
+                    </ItemTemplate>
+                </asp:Repeater>*@
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

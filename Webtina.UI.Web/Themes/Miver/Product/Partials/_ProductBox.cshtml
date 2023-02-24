@@ -1,0 +1,25 @@
+﻿@model GridProductViewModel
+
+<div class="product-item mb-3">
+    <a href="/product/@Model.Id/@Model.Slug">
+        <img class="img-fluid" alt="@Model.Title"
+             src="@Model.PicUrl" />
+    </a>
+    <div class="inner-slider">
+        <div class="inner-wrapper">
+            <div class="d-flex align-items-center">
+                <span class="seller-name">
+                    <a href="/product/@Model.Id/@Model.Slug">
+                        @Model.Title
+                    </a>
+                </span>
+            </div>
+            <div class="content-info">
+                <div class="price">@Model.PriceDispay <small>تومان</small></div>
+            </div>
+            <div class="footer">
+                فروشنده: ugd lpln
+            </div>
+        </div>
+    </div>
+</div>

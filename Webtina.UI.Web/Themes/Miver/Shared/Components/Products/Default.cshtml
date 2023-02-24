@@ -1,0 +1,6 @@
+﻿@model List<GridProductViewModel>
+
+@foreach (var product in Model)
+{
+    <partial name="~/Themes/Miver/Product/Partials/_ProductBox.cshtml" model="product" />
+}

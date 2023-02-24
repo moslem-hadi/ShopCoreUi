@@ -1,0 +1,41 @@
+﻿@model ProductDetailsViewModel
+<div class="d-flex align-items-center justify-content-between prices">
+    <span>قیمت</span>
+    @if (Model.IsFree)
+    {
+        <span class="amount">
+            <span class="price">رایگان</span>
+        </span>
+    }
+    else
+    {
+        <span class="amount">
+            @if (Model.OldPrice != 0)
+            {
+                <del>
+                    @Model.OldPriceDispay
+                </del>
+            }
+
+            <span class="price">@Model.PriceDispay <small>تومان</small></span>
+        </span>
+    }
+</div>
+
+
+@if (Model.IsFree)
+{
+
+
+    <button id="Button1" class="btn btn-primary btn-buy btn-block mb-2" runat="server"
+            type="button">
+        دریافت رایگان
+    </button>
+
+}
+else
+{
+    <a class="btn-buy mb-2" href='/clearing?i=@Model.Id'>
+        <span>خرید </span>
+    </a>
+}
