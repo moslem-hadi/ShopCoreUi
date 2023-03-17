@@ -52,6 +52,35 @@
     <None Include="wwwroot\LocalizationAdmin\scripts\ww.jquery.js" />
     <None Include="wwwroot\LocalizationAdmin\scripts\ww.jquery.min.js" />
     <None Include="wwwroot\LocalizationAdmin\scripts\ww.resourceEditor.js" />
+    <None Include="wwwroot\Themes\Miver\css\fonts\IranSans\woff2\IRANSansWeb%28FaNum%29.woff2" />
+    <None Include="wwwroot\Themes\Miver\css\fonts\IranSans\woff2\IRANSansWeb%28FaNum%29_Black.woff2" />
+    <None Include="wwwroot\Themes\Miver\css\fonts\IranSans\woff2\IRANSansWeb%28FaNum%29_Bold.woff2" />
+    <None Include="wwwroot\Themes\Miver\css\fonts\IranSans\woff2\IRANSansWeb%28FaNum%29_Light.woff2" />
+    <None Include="wwwroot\Themes\Miver\css\fonts\IranSans\woff2\IRANSansWeb%28FaNum%29_Medium.woff2" />
+    <None Include="wwwroot\Themes\Miver\css\fonts\IranSans\woff2\IRANSansWeb%28FaNum%29_UltraLight.woff2" />
+    <None Include="wwwroot\Themes\Miver\css\fonts\yekan\IranYekan_300.woff2" />
+    <None Include="wwwroot\Themes\Miver\css\fonts\yekan\IranYekan_400.woff2" />
+    <None Include="wwwroot\Themes\Miver\css\fonts\yekan\IranYekan_700.woff2" />
+    <None Include="wwwroot\Themes\Miver\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\Themes\Miver\vendor\fontawesome\fonts\fontawesome-webfont.eot%40v=4.7.0" />
+    <None Include="wwwroot\Themes\Miver\vendor\fontawesome\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\Themes\Miver\vendor\fontawesome\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\Themes\Miver\vendor\icons\fonts\materialdesignicons-webfont.eot%40" />
+    <None Include="wwwroot\Themes\Miver\vendor\icons\fonts\materialdesignicons-webfont.eot%40v=2.1.99" />
+    <None Include="wwwroot\Themes\Miver\vendor\icons\fonts\materialdesignicons-webfont.svg%40v=2.1.99" />
+    <None Include="wwwroot\Themes\Miver\vendor\icons\fonts\materialdesignicons-webfont.ttf%40v=2.1.99" />
+    <None Include="wwwroot\Themes\Miver\vendor\icons\fonts\materialdesignicons-webfont.woff%40v=2.1.99" />
+    <None Include="wwwroot\Themes\Miver\vendor\icons\fonts\materialdesignicons-webfont.woff2%40v=2.1.99" />
+    <None Include="wwwroot\Themes\Miver\vendor\jquery\jquery.min.js" />
+    <None Include="wwwroot\Themes\Miver\vendor\lightgallery-master\dist\fonts\lg.eot%40" />
+    <None Include="wwwroot\Themes\Miver\vendor\lightgallery-master\dist\fonts\lg.eot%40n1z373" />
+    <None Include="wwwroot\Themes\Miver\vendor\lightgallery-master\dist\fonts\lg.svg" />
+    <None Include="wwwroot\Themes\Miver\vendor\lightgallery-master\dist\fonts\lg.svg%40n1z373" />
+    <None Include="wwwroot\Themes\Miver\vendor\lightgallery-master\dist\fonts\lg.ttf%40n1z373" />
+    <None Include="wwwroot\Themes\Miver\vendor\lightgallery-master\dist\fonts\lg.woff%40n1z373" />
+    <None Include="wwwroot\Themes\Miver\vendor\lightgallery-master\dist\js\lightgallery-all.min.js" />
+    <None Include="wwwroot\Themes\Miver\vendor\select2\js\select2.min.js" />
+    <None Include="wwwroot\Themes\Miver\vendor\slick-master\slick\slick.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,6 +94,10 @@
     <ProjectReference Include="..\Webtina.UI.Framework\Webtina.UI.Framework.csproj" />
     <ProjectReference Include="..\Webtina.UI.Models\Webtina.UI.Models.csproj" />
     <ProjectReference Include="..\Webtina.UI.Services\Webtina.UI.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\content\products\" />
   </ItemGroup>
 
 </Project>

@@ -16,7 +16,7 @@ namespace Webtina.UI.Models.ViewModels
         public string Slug { get => Title.Slugify(); }
 
         public int Price { get; set; }
-        public string PicUrl { get=> $"http://nikanlink.com/content/productpic/{Pic}";  }
+        public string PicUrl { get=> $"/content/products/{Pic}";  }
         public string Pic { get; set; }
         public int OldPrice { get; set; }
 

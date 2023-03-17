@@ -2,9 +2,25 @@
 
 @using Webtina.UI.Web.Controllers.Components;
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "صفحه نخست";
 }
-
+<title>صفحه نخست</title>
+<meta name="description" content="<%= seodesc%>" />
+  
+<meta property='og:title' content='<%= title%>' />
+<meta property='og:url' content='http://karokia.ir/' />
+<meta property='og:image' content='http://karokia.ir/images/logo.png' />
+<meta property='og:description' content='<%= seodesc%>' />
+<meta property='og:article:tag' content='<%= title%>' />
+<meta property='og:locale' content='ir_FA' />
+<meta property='og:site_name' content='کاروکیا' />
+<meta name='twitter:title' content='<%= title%>'>
+<meta name='twitter:description' content='<%= seodesc%>'>
+<meta name='twitter:image:src' content='http://karokia.ir/images/logo.png'>
+<meta itemprop='name' content='<%= title%>'>
+<meta itemprop='description' content='<%= seodesc%>'>
+<meta itemprop='image' content='http://karokia.ir/images/logo.png'>
+<link href="~/themes/miver/css/owl.carousel.css" rel="stylesheet" />
 
 
 <!-- Begin Page Content -->
@@ -12,7 +28,7 @@
     <div class="container">
         <div class="row py-lg-5">
             <div class="col-lg-5">
-                <img class="img-fluid" src="images/banner.svg" alt="" />
+                <img class="img-fluid" src="~/themes/miver/images/File-searching.svg" alt="" />
             </div>
             <div class="col-lg-7">
                 <div class="homepage-search-title">
@@ -62,11 +78,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="text-white">جدیدترین فایل‌ها</h3>
+                    <h3 class="text-white title">محبوب ترین‌ها</h3>
                     <div class="view recent-slider recommended-slider">
                         <cache expires-after="@TimeSpan.FromHours(2)">
                             @await Component.InvokeAsync("Products", new ProductsComponentQuery { Count = 20 })
                         </cache>
+
                     </div>
                 </div>
             </div>
@@ -75,7 +92,7 @@
 </section>
 <!--       recent -->
 <!--    about section -->
-<div class="market-wrapper py-5 bg-white">
+  <div class="market-wrapper py-5 bg-white">
     <div class="container">
         <h2 class="text-center">در همه دسته بندی ها آموزش داریم</h2>
         <ul class="categories-list mb-0">
@@ -135,230 +152,63 @@
             </li>
         </ul>
     </div>
-</div>
+</div> 
 <!--     market   -->
 
-<section class="py-5 bg-light">
+
+
+
+<section class="py-5 bg-striped">
     <div class="view_slider recommended">
         <div class="container">
-            <h3>آخرین آموزش ها</h3>
-            <div class="view row">
-                <div class="col-md-3 col-sm-3 col-6">
-                    <div class="product-item mb-3">
-                        <a href="product-detail.html">
-                            <img class="img-fluid"
-                                 src="https://images.faranesh.com/media/341/course/5e9094a00d6c0-content-marketing-min.jpg" />
-                        </a>
-                        <div class="inner-slider">
-                            <div class="inner-wrapper">
-                                <div class="d-flex align-items-center">
-                                    <span class="seller-image">
-                                        <span class="seller">
-                                            مرتضی علی یاری
-                                        </span>
-                                        <img class="img-fluid"
-                                             src="images/user/s1.png"
-                                             alt="" />
-                                    </span>
-                                    <span class="seller-name">
-                                        <a href="profile.html">
-                                            کلاس آنلاین کارگاهی بازاریابی محتوایی: محتوایی خلق
-                                            کنید که بفروشد
-                                        </a>
-                                    </span>
-                                </div>
-                                <div class="content-info">
-                                    <div class="price">120 هزار <small> تومان</small></div>
-                                </div>
-                                <div class="footer">
-                                    <i class="fa fa-heart" aria-hidden="true"></i>
 
-                                    <div class="rating-wrapper">
-                                        <span class="gig-rating text-body-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                 viewBox="0 0 1792 1792"
-                                                 width="15"
-                                                 height="15">
-                                                <path fill="currentColor"
-                                                      d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"></path>
-                                            </svg>
+            <div class="">
+
+                <h3>
+                    <a href="#">
+                        title
+                        <small class="float-left">مشاهده همه&nbsp;<i class="fa fa-angle-left align-middle mr-1"></i></small>
+                    </a>
+                </h3>
+                <div class="view row">
+                    
+                    <div class="col-md-3 col-sm-3 col-6">
+                        <div class="product-item mb-3">
+                            <a href="#" title="<%=pr.Title %>">
+                                <img class="img-fluid"
+                                     src="/content/productpic/<%=pr.Pic%>" />
+                            </a>
+                            <div class="inner-slider">
+                                <div class="inner-wrapper">
+                                    <div class="d-flex align-items-center">
+                                        <span class="seller-image">
+                                            <span class="seller">
+                                                <%=pr.FullName %>
+                                            </span>
+                                            <img class="img-fluid"
+                                                 src="/content/userpic/<%= pr.UserPic %>"
+                                                 alt="" />
+                                        </span>
+                                        <span class="seller-name">
+                                            <a href="#" title="<%=pr.Title %>">
+                                                <%=pr.Title %>
+                                            </a>
                                         </span>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-3 col-6">
-                    <div class="product-item mb-3">
-                        <a href="product-detail.html">
-                            <img class="img-fluid"
-                                 src="https://images.faranesh.com/media/341/course/5e9094a00d6c0-content-marketing-min.jpg" />
-                        </a>
-                        <div class="inner-slider">
-                            <div class="inner-wrapper">
-                                <div class="d-flex align-items-center">
-                                    <span class="seller-image">
-                                        <span class="seller">
-                                            مرتضی علی یاری
-                                        </span>
-                                        <img class="img-fluid"
-                                             src="images/user/s1.png"
-                                             alt="" />
-                                    </span>
-                                    <span class="seller-name">
-                                        <a href="profile.html">
-                                            کلاس آنلاین کارگاهی بازاریابی محتوایی: محتوایی خلق
-                                            کنید که بفروشد
-                                        </a>
-                                    </span>
-                                </div>
-                                <div class="content-info">
-                                    <div class="price">120 هزار <small> تومان</small></div>
-                                </div>
-                                <div class="footer">
-                                    <i class="fa fa-heart" aria-hidden="true"></i>
-
-                                    <div class="rating-wrapper">
-                                        <span class="gig-rating text-body-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                 viewBox="0 0 1792 1792"
-                                                 width="15"
-                                                 height="15">
-                                                <path fill="currentColor"
-                                                      d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"></path>
-                                            </svg>
-                                        </span>
+                                    <div class="content-info">
+                                        <div class="price">
+                                            <del>30,000</del>
+                                            <span class='free'>رایگان</span>
+                                            2,000 <small>تومان</small>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                    <div class="footer">
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
 
-                <div class="col-md-3 col-sm-3 col-6">
-                    <div class="product-item mb-3">
-                        <a href="product-detail.html">
-                            <img class="img-fluid"
-                                 src="https://images.faranesh.com/media/341/course/5f2a50de38d81-18mordad.jpg" />
-                        </a>
-                        <div class="inner-slider">
-                            <div class="inner-wrapper">
-                                <div class="d-flex align-items-center">
-                                    <span class="seller-image">
-                                        <span class="seller">
-                                            مرتضی علی یاری
-                                        </span>
-                                        <img class="img-fluid"
-                                             src="images/user/s1.png"
-                                             alt="" />
-                                    </span>
-                                    <span class="seller-name">
-                                        <a href="profile.html">کلاس آنلاین معرفی و بررسی سهام‌های مستعد رشد 9</a>
-                                    </span>
-                                </div>
-                                <div class="content-info">
-                                    <div class="price">120 هزار <small> تومان</small></div>
-                                </div>
-                                <div class="footer">
-                                    <i class="fa fa-heart" aria-hidden="true"></i>
-
-                                    <div class="rating-wrapper">
-                                        <span class="gig-rating text-body-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                 viewBox="0 0 1792 1792"
-                                                 width="15"
-                                                 height="15">
-                                                <path fill="currentColor"
-                                                      d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"></path>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-6">
-                    <div class="product-item mb-3">
-                        <a href="product-detail.html">
-                            <img class="img-fluid"
-                                 src="https://images.faranesh.com/media/341/course/5eae3d845535d-start-bourse.jpg" />
-                        </a>
-                        <div class="inner-slider">
-                            <div class="inner-wrapper">
-                                <div class="d-flex align-items-center">
-                                    <span class="seller-image">
-                                        <span class="seller">
-                                            مرتضی علی یاری
-                                        </span>
-                                        <img class="img-fluid"
-                                             src="images/user/s1.png"
-                                             alt="" />
-                                    </span>
-                                    <span class="seller-name">
-                                        <a href="profile.html">آموزش رایگان سرمایه گذاری در بورس</a>
-                                    </span>
-                                </div>
-                                <div class="content-info">
-                                    <div class="price">120 هزار <small> تومان</small></div>
-                                </div>
-                                <div class="footer">
-                                    <i class="fa fa-heart" aria-hidden="true"></i>
-
-                                    <div class="rating-wrapper">
-                                        <span class="gig-rating text-body-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                 viewBox="0 0 1792 1792"
-                                                 width="15"
-                                                 height="15">
-                                                <path fill="currentColor"
-                                                      d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"></path>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-6">
-                    <div class="product-item mb-3">
-                        <a href="product-detail.html">
-                            <img class="img-fluid" src="images/list/v1.png" />
-                        </a>
-                        <div class="inner-slider">
-                            <div class="inner-wrapper">
-                                <div class="d-flex align-items-center">
-                                    <span class="seller-image">
-                                        <span class="seller">
-                                            مرتضی علی یاری
-                                        </span>
-                                        <img class="img-fluid"
-                                             src="images/user/s1.png"
-                                             alt="" />
-                                    </span>
-                                    <span class="seller-name">
-                                        <a href="profile.html">تحلیل تکنیکال حرفه‌ای (فیبوناچی و الیوت)</a>
-                                    </span>
-                                </div>
-                                <div class="content-info">
-                                    <div class="price">120 هزار <small> تومان</small></div>
-                                </div>
-                                <div class="footer">
-                                    <i class="fa fa-heart" aria-hidden="true"></i>
-
-                                    <div class="rating-wrapper">
-                                        <span class="gig-rating text-body-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                 viewBox="0 0 1792 1792"
-                                                 width="15"
-                                                 height="15">
-                                                <path fill="currentColor"
-                                                      d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"></path>
-                                            </svg>
-                                        </span>
+                                        <div class="rating-wrapper" data-toggle="tooltip" title="بدون امتیاز">
+                                            <i class="fa fa-star"></i>
+                                            <span>3</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -366,12 +216,14 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
 </section>
-<!--       recent -->
-<!--       guides  -->
-<div class="guide-wrapper bg-white py-5">
+
+
+  <div class="guide-wrapper bg-white py-5">
     <div class="container">
         <h2>
             آخرین مقالات
@@ -407,8 +259,7 @@
             </div>
         </div>
     </div>
-</div>
-<!--       guides  -->
+</div> 
 <!-- get started -->
 <div>
     <div class="get-started">
@@ -419,4 +270,14 @@
         </div>
     </div>
 </div>
-<!-- get started -->
+
+
+
+
+
+
+
+
+
+
+
